@@ -1,0 +1,28 @@
+﻿@model ASM2_VuHaiDuong.Models.Cart
+
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Carts";
+}
+<a asp-controller="Carts" asp-action="ListCart" class="btn btn-primary store-btn float-right mr-5">List Cart<i class="fa-solid fa-cart-plus"></i></a>
+<h2 class="my-4">Store</h2>
+<div class="row">
+    @foreach (var book in ViewBag.product)
+    {
+            <div class="col-3">
+                <div class="card my-2 store-card">
+               <a>
+                    <img src="~/images/@book.ProfilePicture" height="200" width="200" />
+                        <div class="card-body" style="height: 6em;">
+                            <h5 class="mb-3">@book.Name</h5>
+                        </div>
+                            <div class="card-body">
+                            <span class="card-text">@book.Price.ToString("c")</span>
+                        <a asp-controller="Carts" asp-action="addCart" asp-route-id="@book.Id" class="btn btn-primary store-btn float-right mr-5">Add to cart <i class="fa-solid fa-cart-plus"></i></a>
+                        <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-success"><i class="fa-solid fa-circle-info"></i></a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    }
+</div>
